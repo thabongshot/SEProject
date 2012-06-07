@@ -3,16 +3,17 @@ import java.io.*;
 
 import javax.swing.*;
 
+
 public class OpenButtonListener extends JFrame  implements ActionListener {
 
 	JFileChooser openfile = new JFileChooser();
-	int[][] data;
-	String[] title;
+	
+	TableData tbdata;
 
 
-	public OpenButtonListener(int[][] data, String[] title) {
-		this.data = data;
-		this.title = title;
+	public OpenButtonListener(TableData tbdata) {
+		// TODO Auto-generated constructor stub
+		this.tbdata = tbdata;
 	}
 
 
@@ -35,7 +36,10 @@ public class OpenButtonListener extends JFrame  implements ActionListener {
 		FileInputStream fis;
 		BufferedInputStream bis;
 		BufferedReader in;
-
+		
+		// for debug
+		JOptionPane.showMessageDialog(null, "DEBUG :: file read function");
+		
 		try {
 
 			fis = new FileInputStream(file_open); // FileInputStream객체를 생성하고
@@ -47,27 +51,29 @@ public class OpenButtonListener extends JFrame  implements ActionListener {
 
 			int datanum = Integer.parseInt(in.readLine());
 
-			data = new int[datanum][datanum];
-			title = new String[datanum];
+			tbdata.data = new int[datanum][datanum];
+			tbdata.title = new String[datanum];
 
 			for (int k = 0; k < datanum; k++) {
 				line = in.readLine();
 				String[] ex = null;
 				ex = line.split(" ");
 
-				for (j = 0; j < data.length; j++) {
-					data[i][j] = Integer.parseInt(ex[j]);
+				for (j = 0; j < tbdata.data.length; j++) {
+					tbdata.data[i][j] = Integer.parseInt(ex[j]);
 				}
 				i++;
 			}
 
 			for (i = 0; i < datanum; i++) {
-				title[i] = in.readLine();
+				tbdata.title[i] = in.readLine();
 			}
 
 			fis.close();
 			bis.close();
 			in.close();
+			
+
 
 		} catch (FileNotFoundException fe) {
 			JOptionPane.showMessageDialog(null,

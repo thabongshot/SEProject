@@ -9,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -48,22 +49,22 @@ public class mainController {
 	JButton up;
 	JButton down;
 	JButton delete;
-	JTree tree;
-	JTreeController jc;
-	MatrixModel mx;
-	JTable table;
-	JList rowheader;
-	mainViewer mv;
-	int[][] data;
-	String[] title;
-	MatrixController mc;
+	
+	// this is class data for drawing tables
+	TableData tbdata ;
+
 
 	public mainController() {
 
-		data = new int[1][1];
-		data[0][0] = 0;
-		title = new String[1];
-		title[0] = "default";
+		// create data to heap
+		tbdata = new TableData();
+		
+		// init
+		tbdata.data = new int[1][1];
+		tbdata.data[0][0] = 0;
+		tbdata.title = new String[1];
+		tbdata.title[0] = "default";
+		
 		// MENU ºÎÂø
 		jmb = new JMenuBar();
 		jmb.add(this.setFileMenu());
@@ -85,8 +86,8 @@ public class mainController {
 		this.setExitAction();
 		this.setReDrawAction();
 
-		mv = new mainViewer("SE-Project", jmb, toolbarmenu, subbutton, tree,
-				table, rowheader);
+		tbdata.mv = new mainViewer("SE-Project", jmb, toolbarmenu, subbutton, tbdata.tree,
+				tbdata.table, tbdata.rowheader);
 
 		/*
 		 * // xml->JTree XMLtoJTreeController xjc = new XMLtoJTreeController();
@@ -213,29 +214,29 @@ public class mainController {
 	}
 
 	public void setJTree() {
-		tree = new JTree();
-		jc = new JTreeController(tree);
-		tree = jc.getJTree();
+		tbdata.tree = new JTree();
+		tbdata.jc = new JTreeController(tbdata.tree);
+		tbdata.tree = tbdata.jc.getJTree();
 
 	}
 
 	public void setJTable() {
-		mx = new MatrixModel();
-		table = new JTable(mx);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.getColumnModel().getColumn(0).setPreferredWidth(5);
+		tbdata.mx = new MatrixModel();
+		tbdata.table = new JTable(tbdata.mx);
+		tbdata.table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tbdata.table.getColumnModel().getColumn(0).setPreferredWidth(5);
 
 	}
 
 	public void setRowHeader() {
-		rowheader = new JList(new RowHeader().lm);
-		rowheader.setFixedCellHeight(table.getRowHeight());
-		rowheader.setCellRenderer(new RowHeaderRenderer(this.table));
+		tbdata.rowheader = new JList(new RowHeader().lm);
+		tbdata.rowheader.setFixedCellHeight(tbdata.table.getRowHeight());
+		tbdata.rowheader.setCellRenderer(new RowHeaderRenderer(this.tbdata.table));
 
 	}
 
 	public void setOpenAction() {
-		OpenButtonListener openbutton = new OpenButtonListener(data, title);
+		OpenButtonListener openbutton = new OpenButtonListener(this.tbdata);
 		open.addActionListener(openbutton);
 		opendsm.addActionListener(openbutton);
 		LoadButtonListener loadbutton = new LoadButtonListener();
@@ -264,18 +265,27 @@ public class mainController {
 	}
 
 	public void setReDrawAction() {
-		ReDrawButtonListener redrawbuttion = new ReDrawButtonListener();
-		redraw.addActionListener(redrawbuttion);
+		
+		// create listener
+		ReDrawButtonListener redrawbutton = new ReDrawButtonListener(tbdata);
+		
+		// add to button
+		redraw.addActionListener(redrawbutton);
 	}
 
 	public void reDraw() {
-		mc = new MatrixController();
-		jc = new JTreeController(title, tree);
+		
+		// reset data
+		tbdata.mc = new MatrixController();
+		tbdata.jc = new JTreeController(tbdata.title, tbdata.tree);
 
-		rowheader.setModel(new RowHeader(title).lm);
-		mc.setMatrix(data, title);
-		table.setModel(mc.mm);
-		for (int i1 = 0; i1 < title.length; i1++)
-			table.getColumnModel().getColumn(i1).setPreferredWidth(5);
+		tbdata.rowheader.setModel(new RowHeader(tbdata.title).lm);
+		tbdata.mc.setMatrix(tbdata.data, tbdata.title);
+		
+		// redraw table
+		tbdata.table.setModel(tbdata.mc.mm);
+		for (int i1 = 0; i1 < tbdata.title.length; i1++)
+			tbdata.table.getColumnModel().getColumn(i1).setPreferredWidth(5);
+		
 	}
 }

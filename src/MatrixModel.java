@@ -27,6 +27,7 @@ public class MatrixModel extends AbstractTableModel {
 		this.title = title;
 		row = matrix.length;
 		col = matrix[0].length;
+		
 
 	}
 
@@ -62,7 +63,7 @@ public class MatrixModel extends AbstractTableModel {
 		else
 			smatrix[rowIndex][columnIndex] = " ";
 
-		// System.out.println("rowindex : "+rowIndex+", colindex : "+columnIndex+", value : "+matrix[rowIndex][columnIndex]);
+		 //System.out.println("rowindex : "+rowIndex+", colindex : "+columnIndex+", value : "+ matrix[rowIndex][columnIndex]);
 		return smatrix[rowIndex][columnIndex];
 	}
 

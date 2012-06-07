@@ -12,7 +12,7 @@ import javax.swing.tree.*;
 
 public class TreeUpActionHandler implements ActionListener {
 
-	// initted by the constructor
+	// initted Sby the constructor
 	JTable table;
 	JList rowHeader;
 	JTree tree;
@@ -60,10 +60,9 @@ public class TreeUpActionHandler implements ActionListener {
 						(DefaultMutableTreeNode) model.getRoot(), index - 1);
 				
 				// table row º¯°æ
-				TableModel tableModel = table.getModel();
-				tableModel.getValueAt(rowIndex, columnIndex);
-
-				defaultTableModel.moveRow(index, index, index - 1);
+				//TableModel tableModel = table.getModel();
+				//tableModel.getValueAt(rowIndex, columnIndex);
+				//defaultTableModel.moveRow(index, index, index - 1);
 
 				
 			} else {
