@@ -1,10 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTree;
 
 public class ReDrawButtonListener implements ActionListener {	
 	
@@ -33,8 +30,9 @@ public class ReDrawButtonListener implements ActionListener {
 		for (int i1 = 0; i1 < tbdata.title.length; i1++)
 			tbdata.table.getColumnModel().getColumn(i1).setPreferredWidth(5);
 
-		for(int i=0; i<tbdata.title.length; i++)
-			System.out.println("DEBUG :: title :: " + tbdata.title[i]);
+		// for debug
+		//for(int i=0; i<tbdata.title.length; i++)
+		//	System.out.println("DEBUG :: title :: " + tbdata.title[i]);
 	}
 }
 

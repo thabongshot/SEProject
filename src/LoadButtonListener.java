@@ -42,8 +42,6 @@ public class LoadButtonListener extends JFrame implements ActionListener {
 					output.write((char)data);					
 				}					
 				
-				//JOptionPane.showMessageDialog(null, output.toString());
-				
 				fis.close();
 				output.close();
 				

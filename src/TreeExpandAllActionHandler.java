@@ -7,10 +7,11 @@ import javax.swing.JTree;
 import javax.swing.tree.*;
 
 public class TreeExpandAllActionHandler implements ActionListener {
-	JTree tree;
+	
+	TableData tbdata;
 
-	public TreeExpandAllActionHandler(JTree tree) {
-		this.tree = tree;
+	public TreeExpandAllActionHandler(TableData tbdata) {
+		this.tbdata = tbdata;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -18,8 +19,8 @@ public class TreeExpandAllActionHandler implements ActionListener {
 	}
 
 	public void expandAll() {
-	    TreeNode root = (TreeNode) tree.getModel().getRoot();
-	    expandAll(tree, new TreePath(root));
+	    TreeNode root = (TreeNode) tbdata.tree.getModel().getRoot();
+	    expandAll(tbdata.tree, new TreePath(root));
 	}
 	private void expandAll(JTree tree, TreePath parent) {
 	    TreeNode node = (TreeNode) parent.getLastPathComponent();

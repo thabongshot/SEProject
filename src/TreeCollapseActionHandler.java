@@ -10,10 +10,11 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 public class TreeCollapseActionHandler implements ActionListener{
-	JTree tree;
+	
+	TableData tbdata;
 
-	public  TreeCollapseActionHandler(JTree tree) {
-		this.tree = tree;
+	public TreeCollapseActionHandler(TableData tbdata) {
+		this.tbdata = tbdata;
 	}
 
 
@@ -22,8 +23,8 @@ public class TreeCollapseActionHandler implements ActionListener{
 	}
 
 	public void expandAll() {
-	    TreeNode root = (TreeNode) tree.getModel().getRoot();
-	    expandAll(tree, new TreePath(root));
+	    TreeNode root = (TreeNode) tbdata.tree.getModel().getRoot();
+	    expandAll(tbdata.tree, new TreePath(root));
 	}
 	private void expandAll(JTree tree, TreePath parent) {
 	    TreeNode node = (TreeNode) parent.getLastPathComponent();

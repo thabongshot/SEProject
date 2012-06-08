@@ -85,6 +85,7 @@ public class mainController {
 		this.setAboutAction();
 		this.setExitAction();
 		this.setReDrawAction();
+		this.setTreeWork();
 
 		tbdata.mv = new mainViewer("SE-Project", jmb, toolbarmenu, subbutton, tbdata.tree,
 				tbdata.table, tbdata.rowheader);
@@ -264,15 +265,47 @@ public class mainController {
 		exit.addActionListener(exitbutton);
 	}
 
-	public void setReDrawAction() {
+	// draw tables again
+	// ReDraw listener 가 data 와 title 가지고 매번 테이블을 짜서 그리므로
+	// tbdata 에서는 data와 title, tree(grouping) 의 변경만 있으면 된다.
+	public void setReDrawAction() {		
 		
 		// create listener
 		ReDrawButtonListener redrawbutton = new ReDrawButtonListener(tbdata);
-		
 		// add to button
 		redraw.addActionListener(redrawbutton);
 	}
+	
+	
+	// grouping, up, down, delete
+	public void setTreeWork() {
+		
+		//(down);
+		//(delete);
+		
+		//expand
+		TreeExpandAllActionHandler teaah = new TreeExpandAllActionHandler(tbdata);
+		expand.addActionListener(teaah);
+		
+		//collapse
+		TreeCollapseActionHandler tcah = new TreeCollapseActionHandler(tbdata);
+		collapse.addActionListener(tcah);
+		
+		//group
+		//ungroup
+		
+		//up
+		TreeUpActionHandler tuah = new TreeUpActionHandler(tbdata);
+		up.addActionListener(tuah);
+		
+		//down
+		TreeDownActionHandler tdah = new TreeDownActionHandler(tbdata);
+		down.addActionListener(tdah);
+		
+	}
+	
 
+	// ? 어따씀 ? 
 	public void reDraw() {
 		
 		// reset data

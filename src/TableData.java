@@ -3,6 +3,7 @@ import javax.swing.JTable;
 import javax.swing.JTree;
 
 
+// include tree data
 public class TableData {
 
 		JTree tree;
