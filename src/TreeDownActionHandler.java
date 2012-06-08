@@ -1,13 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
+
 
 public class TreeDownActionHandler implements ActionListener {
 	
@@ -44,15 +42,18 @@ public class TreeDownActionHandler implements ActionListener {
 			// 노드의 index 구함 
 			int index = model.getIndexOfChild(model.getRoot(), node);
 
-			// ?? up 이랑 같아도 됨 ??
+			// ?? 
 			if(i!=(model.getChildCount(model.getRoot()))-1){
 				
 				// tree 노드 변경 
 				model.insertNodeInto(node,(DefaultMutableTreeNode) model.getRoot(), index + 1);
 				
 				// table row 변경, table title row 변경 
+				// qt이네 주석 풀면 바로바뀌고 안풀면 redraw에서바뀜 
+				//JOptionPane.showMessageDialog(null, "DEBUG :: now will change the row");
 				changerow(index + 1, index);
 				changetitle(index + 1, index);
+				//JOptionPane.showMessageDialog(null, "DEBUG :: is changed?");
 				
 			}
 			
@@ -64,6 +65,8 @@ public class TreeDownActionHandler implements ActionListener {
 			model.reload();
 
 		}
+		
+		/*
 		String[] str = new String[model.getChildCount(model.getRoot())];
 		for (int i = 0; i < model.getChildCount(model.getRoot()); i++) {
 			str[i] = model.getChild(model.getRoot(), i).toString();
@@ -71,6 +74,7 @@ public class TreeDownActionHandler implements ActionListener {
 		}
 		for (int i = 0; i < model.getChildCount(model.getRoot()); i++)
 			System.out.println(str[i]);
+		*/
 	}
 	
 	

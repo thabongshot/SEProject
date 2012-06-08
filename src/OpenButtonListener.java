@@ -73,7 +73,8 @@ public class OpenButtonListener extends JFrame  implements ActionListener {
 			bis.close();
 			in.close();
 			
-
+			
+			JTreeController jc = new JTreeController(tbdata.title, tbdata.tree);
 
 		} catch (FileNotFoundException fe) {
 			JOptionPane.showMessageDialog(null,

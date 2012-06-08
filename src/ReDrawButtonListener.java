@@ -17,11 +17,14 @@ public class ReDrawButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "DEBUG :: Performed re-draw button action");
+		//JOptionPane.showMessageDialog(null, "DEBUG :: Performed re-draw button action");
 		
 		// reset data
 		MatrixController mc = new MatrixController();
-		JTreeController jc = new JTreeController(tbdata.title, tbdata.tree);
+		
+		// moved to open button listener
+		//JTreeController jc = new JTreeController(tbdata.title, tbdata.tree);
+		
 		tbdata.rowheader.setModel(new RowHeader(tbdata.title).lm);
 		mc.setMatrix(tbdata.data, tbdata.title);
 		

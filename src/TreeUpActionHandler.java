@@ -1,13 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTree;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 import javax.swing.tree.*;
 
 public class TreeUpActionHandler implements ActionListener {
@@ -25,7 +18,7 @@ public class TreeUpActionHandler implements ActionListener {
 	// table 순서 같이 변경 
 	public void actionPerformed(ActionEvent e) {
 
-		JOptionPane.showMessageDialog(null, "DEBUG :: tree up");
+		//JOptionPane.showMessageDialog(null, "DEBUG :: tree up");
 		TreePath[] tp = tbdata.tree.getSelectionPaths();
 
 		DefaultMutableTreeNode node;
@@ -48,12 +41,13 @@ public class TreeUpActionHandler implements ActionListener {
 			if (index != 0) {
 				
 				// tree 노드 변경 
-				model.insertNodeInto(node,
-						(DefaultMutableTreeNode) model.getRoot(), index - 1);
+				model.insertNodeInto(node, (DefaultMutableTreeNode) model.getRoot(), index - 1);
 				
 				// table row 변경, table title row 변경 
+				//JOptionPane.showMessageDialog(null, "DEBUG :: now will change the row");
 				changerow(index - 1, index);
 				changetitle(index - 1, index);
+				//JOptionPane.showMessageDialog(null, "DEBUG :: is changed?");
 
 			} else {
 				JOptionPane.showMessageDialog(null,
