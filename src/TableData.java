@@ -5,7 +5,9 @@ import javax.swing.JTree;
 
 // include tree data
 public class TableData {
-
+		public TableData(){
+			isExpand = false;
+		}
 		JTree tree;
 		JTreeController jc;
 		MatrixModel mx;
@@ -16,4 +18,5 @@ public class TableData {
 		String[] title;
 		MatrixController mc;
 
+		boolean isExpand;
 }

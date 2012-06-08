@@ -37,8 +37,6 @@ public class OpenButtonListener extends JFrame  implements ActionListener {
 		BufferedInputStream bis;
 		BufferedReader in;
 		
-		// for debug
-		JOptionPane.showMessageDialog(null, "DEBUG :: file read function");
 		
 		try {
 
@@ -51,30 +49,32 @@ public class OpenButtonListener extends JFrame  implements ActionListener {
 
 			int datanum = Integer.parseInt(in.readLine());
 
-			tbdata.data = new int[datanum][datanum];
-			tbdata.title = new String[datanum];
+			this.tbdata.data = new int[datanum][datanum];
+			this.tbdata.title = new String[datanum];
 
 			for (int k = 0; k < datanum; k++) {
 				line = in.readLine();
 				String[] ex = null;
 				ex = line.split(" ");
 
-				for (j = 0; j < tbdata.data.length; j++) {
-					tbdata.data[i][j] = Integer.parseInt(ex[j]);
+				for (j = 0; j < this.tbdata.data.length; j++) {
+					this.tbdata.data[i][j] = Integer.parseInt(ex[j]);
 				}
 				i++;
 			}
 
 			for (i = 0; i < datanum; i++) {
-				tbdata.title[i] = in.readLine();
+				this.tbdata.title[i] = in.readLine();
 			}
 
 			fis.close();
 			bis.close();
 			in.close();
 			
-			
-			JTreeController jc = new JTreeController(tbdata.title, tbdata.tree);
+			// file open -> state : tree collapse 
+			JTreeController jc = new JTreeController(this.tbdata.title, this.tbdata.tree);
+			new TreeCollapseActionHandler(this.tbdata).expandAll();
+			this.tbdata.table.getColumnModel().getColumn(0).setPreferredWidth(5);
 
 		} catch (FileNotFoundException fe) {
 			JOptionPane.showMessageDialog(null,

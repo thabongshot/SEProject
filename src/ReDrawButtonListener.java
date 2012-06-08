@@ -19,19 +19,23 @@ public class ReDrawButtonListener implements ActionListener {
 		// TODO Auto-generated method stub
 		//JOptionPane.showMessageDialog(null, "DEBUG :: Performed re-draw button action");
 		
-		// reset data
-		MatrixController mc = new MatrixController();
+		// ==== re make mode and table ==> moved to tree action
+		//tbdata.rowheader.setModel(new RowHeader(tbdata.title).lm);
+		//mc.setMatrix(tbdata.data, tbdata.title);
 		
-		// moved to open button listener
+		// ==== moved to open button listener
 		//JTreeController jc = new JTreeController(tbdata.title, tbdata.tree);
+
+		if( this.tbdata.isExpand ){
+			// redraw table from tbdata
+			MatrixController mc = new MatrixController();
+			mc.setMatrix(this.tbdata.data, this.tbdata.title);
+			this.tbdata.rowheader.setModel(new RowHeader(this.tbdata.title).lm);
+			this.tbdata.table.setModel(mc.mm);
+		}
 		
-		tbdata.rowheader.setModel(new RowHeader(tbdata.title).lm);
-		mc.setMatrix(tbdata.data, tbdata.title);
-		
-		// redraw table
-		tbdata.table.setModel(mc.mm);
 		for (int i1 = 0; i1 < tbdata.title.length; i1++)
-			tbdata.table.getColumnModel().getColumn(i1).setPreferredWidth(5);
+			this.tbdata.table.getColumnModel().getColumn(i1).setPreferredWidth(5);
 
 		// for debug
 		//for(int i=0; i<tbdata.title.length; i++)

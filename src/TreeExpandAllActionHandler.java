@@ -16,8 +16,10 @@ public class TreeExpandAllActionHandler implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		expandAll();
+		this.tbdata.isExpand = true;
 	}
 
+	
 	public void expandAll() {
 	    TreeNode root = (TreeNode) tbdata.tree.getModel().getRoot();
 	    expandAll(tbdata.tree, new TreePath(root));

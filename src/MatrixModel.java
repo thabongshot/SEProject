@@ -14,7 +14,7 @@ public class MatrixModel extends AbstractTableModel {
 		data[0][0] = 0;
 
 		this.title = new String[1];
-		this.title[0] = "Default";
+		this.title[0] = "default";
 
 		row = 1;
 		col = 1;

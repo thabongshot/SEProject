@@ -49,11 +49,13 @@ public class TreeDownActionHandler implements ActionListener {
 				model.insertNodeInto(node,(DefaultMutableTreeNode) model.getRoot(), index + 1);
 				
 				// table row 변경, table title row 변경 
-				// qt이네 주석 풀면 바로바뀌고 안풀면 redraw에서바뀜 
-				//JOptionPane.showMessageDialog(null, "DEBUG :: now will change the row");
 				changerow(index + 1, index);
 				changetitle(index + 1, index);
-				//JOptionPane.showMessageDialog(null, "DEBUG :: is changed?");
+				
+				// tbdata 에 반영한다
+				//MatrixController mc = new MatrixController();
+				//tbdata.rowheader.setModel(new RowHeader(tbdata.title).lm);
+				//mc.setMatrix(tbdata.data, tbdata.title);
 				
 			}
 			
